@@ -56,7 +56,6 @@ const PupilsAddClient = () => {
         <>
             <form onSubmit={handleSubmit} className="container flex flex-col gap-3">
                 <Link href={"/"}>Orqaga</Link>
-                <h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae, neque.</h1>
                 <label className="text-[18px] poppins font-bold" htmlFor="">
                     Maktabni tanlang
                 </label>
