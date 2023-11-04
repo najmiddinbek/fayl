@@ -9,9 +9,9 @@ export default function page() {
 
     return (
         <div className='mt-10 max-w-[1400px] ml-auto mr-auto'>
-            <div className="flex justify-between">
+            <div className="flex justify-between main_panel">
                 <h1 className='page_text poppins text-3xl mb-4 font-bold'>Chortoq tumani 3-maktab o`quvchilari</h1>
-                <Link href={"/"} className="green py-3 px-10 button text-white rounded-md">Orqaga</Link>
+                <Link href={"/"} className="green asosiy_button py-3 px-10 button text-white rounded-md">Orqaga</Link>
             </div>
             <>
                 <div className='w-full h-[10px] bg-transparent rounded-xl'></div>
@@ -26,11 +26,11 @@ export default function page() {
                             </div>
                             <div className='w-12 h-12 relative bg-[#f8f8f8] flex items-center justify-center rounded-md'>
                                 <BsFillEnvelopeFill className='text-3xl' />
+                                <Count />
                             </div>
                         </div>
                     </div>
                 </Link>
-                <Count />
             </>
         </div>
     );

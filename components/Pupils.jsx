@@ -84,7 +84,9 @@ const PupilsAddClient = () => {
     return (
         <>
             <form onSubmit={handleSubmit} className="container flex flex-col gap-3">
-                <Link href={"/"}>Orqaga</Link>
+                <div className="text-end">
+                    <Link className="green rounded-md py-3 px-10 text-white button" href={"/"}>Orqaga</Link>
+                </div>
                 <label className="text-[18px] poppins font-bold" htmlFor="">
                     Maktabni tanlang
                 </label>

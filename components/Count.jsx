@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 
 const getTopics = async () => {
-    const filterDate = new Date("2023-11-04T24:00:00").getTime();
+    const filterDate = new Date("2023-11-05T7:00:00").getTime();
     try {
         const res = await fetch(`/api/topics`, {
             cache: 'no-store',
@@ -53,7 +53,7 @@ export default function Count() {
         <>
             {filteredTopics.length > 0 && (
                 <>
-                    <div className="absolute right-[50%] bg-red-600 text-[12px] text-white rounded-full px-1.5">
+                    <div className="absolute top-1 right-1 bg-red-600 text-[12px] text-white rounded-full px-1.5">
                         {topicCount}
                     </div>
                 </>

@@ -68,7 +68,7 @@ const Filter = () => {
                             <h1 className='admin_panel_text text-4xl mt-3 mb-3 font-bold poppins'>Darsga qatnashmagan o`quvchilar</h1>
                         </div>
                         <div className='flex gap-3 items-center katta_main_div_edi'>
-                            <div onClick={handleHide} className='main_div_edi cursor-pointer flex items-center gap-5 font-bold'>
+                            <div onClick={handleHide} className='main_div_edi w-full cursor-pointer flex items-center gap-5 font-bold'>
                                 <h1 className='poppins text-2xl'>Filtrlash:</h1>
                                 {hide ? (
                                     <div className='w-[100px] border-2 py-2.5 flex items-center justify-center rounded-md'>
@@ -79,8 +79,8 @@ const Filter = () => {
                                     </div>
                                 )}
                             </div>
-                            <Link className='simple_button green px-10 py-3 button rounded-md text-white' href={"/3-maktab"}>Barcha o`quvchilar</Link>
                             <Link className='simple_button green px-10 py-3 button rounded-md text-white' href={"/adminMainPage"}>Orqaga</Link>
+                            <Link className='simple_button green px-10 py-3 button rounded-md text-white' href={"/3-maktab"}>Barcha o`quvchilar</Link>
                         </div>
                     </div>
 
@@ -112,7 +112,7 @@ const Filter = () => {
                 <table className="main_table w-full shadow-xl">
                     <thead className="green text-white font-bold poppins-2">
                         <tr>
-                            <th className="admin_panel_th py-5 px-2 poppins-2">№</th>
+                            <th className="admin_panel_th admin_panel-tih py-5 px-2 poppins-2">№</th>
                             <th className="admin_panel_th py-4 px-2 poppins-2">Ism</th>
                             <th className="admin_panel_th py-4 px-2 poppins-2">Telefon raqami</th>
                             <th className="admin_panel_th py-4 px-2 poppins-2">Maktab</th>
@@ -125,7 +125,7 @@ const Filter = () => {
                     {filteredMavzula.map((t, index) => (
                         <tbody key={t.id} className="text-center w-full">
                             <tr className={`${getRowBackgroundColor(index)} w-full`}>
-                                <td className="px-2 py-4 admin_panel_td admin_panel_index ">{index + 1}</td>
+                                <td className="px-2 py-4 admin_panel_td admin_panel-tih admin_panel_index ">{index + 1}</td>
                                 <td className='admin_panel_td'>{t.newSinfi}</td>
                                 <td className="px-2 py-4 admin_panel_td">{t.telephoneRaqami}</td>
                                 <td className="px-2 py-4 admin_panel_td">{t.school}</td>

@@ -53,12 +53,14 @@ const Filter = () => {
     return (
         <div>
             <div className="flex">
-                <div className='mb-4 flex gap-4 items-center w-full'>
+                <div className='mb-4 main_div_bolsa_kerak flex gap-4 items-center w-full'>
                     <div className="flex w-full">
-                        <input className='border-2 py-3 px-2 w-full' placeholder='Izlash...' type="text" value={filterValue} onChange={(e) => setFilterValue(e.target.value)} />
-                        <button className='green text-white py-3 border-2 px-10 button ' onClick={handleFilter}>Izlash</button>
+                        <input className='oldin_div_bolgan border-2 py-3 px-2 w-full' placeholder='Izlash...' type="text" value={filterValue} onChange={(e) => setFilterValue(e.target.value)} />
+                        <button className='oldin_div_bolgan green text-white py-3 border-2 px-10 button ' onClick={handleFilter}>Izlash</button>
                     </div>
-                    <Link href={"/adminMainPage"} className="green py-3 px-10 button text-white rounded-md">Orqaga</Link>
+                    <div className="balki_divdir">
+                        <Link href={"/adminMainPage"} className="button_bolsa_kerak green py-3 px-10 button text-white rounded-md">Orqaga</Link>
+                    </div>
                 </div>
             </div>
             <table className="w-full shadow-xl">
