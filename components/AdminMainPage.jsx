@@ -26,11 +26,11 @@ export default function page() {
                             </div>
                             <div className='w-12 h-12 relative bg-[#f8f8f8] flex items-center justify-center rounded-md'>
                                 <BsFillEnvelopeFill className='text-3xl' />
-                                <Count />
                             </div>
                         </div>
                     </div>
                 </Link>
+                <Count />
             </>
         </div>
     );

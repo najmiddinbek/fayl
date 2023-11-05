@@ -24,6 +24,7 @@ const PupilsAddClient = () => {
     const maktablar = Array.from({ length: 54 }, (_, index) => index + 1);
     const kun = Array.from({ length: 3 }, (_, index) => index + 1);
     const soat = Array.from({ length: 6 }, (_, index) => index + 1);
+    const sinflar = Array.from({ length: 11 }, (_, index) => index + 1);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,7 +47,7 @@ const PupilsAddClient = () => {
                     newDarsQoldirish,
                     telephoneRaqami,
                     newIsm,
-                    setShaxsi
+                    setShaxsi,
                 }),
             });
 
@@ -79,6 +80,7 @@ const PupilsAddClient = () => {
         } catch (error) {
             console.log(error);
         }
+
     };
 
     return (
@@ -103,54 +105,117 @@ const PupilsAddClient = () => {
                     ))}
                 </select>
 
-                <label className="text-[18px] font-bold poppins" htmlFor="">
-                    Sinfni tanlang
-                </label>
+                {school === "3" && (
+                    <>
+                        <label className="text-[18px] font-bold poppins" htmlFor="">
+                            Sinfni tanlang
+                        </label>
 
-                <FilterOption
-                    shaxsiy={newIsm}
-                    setShaxsiy={setNewIsm}
-                    setSetIsimi={newSinfi}
-                    setSetShaxs={setNewSinfi}
-                />
-                <label className="text-[18px] font-bold poppins" htmlFor="">
-                    Qoldirilgan dars vaqti
-                </label>
-                <select onChange={(e) => setNewDarsQoldirish(e.target.value)} value={newDarsQoldirish} className="px-2 py-3 cursor-pointer">
-                    <option>Soat bo`yicha</option>
+                        <FilterOption
+                            shaxsiy={newIsm}
+                            setShaxsiy={setNewIsm}
+                            setSetIsimi={newSinfi}
+                            setSetShaxs={setNewSinfi}
+                        />
+                        <label className="text-[18px] font-bold poppins" htmlFor="">
+                            Qoldirilgan dars vaqti
+                        </label>
+                        <select onChange={(e) => setNewDarsQoldirish(e.target.value)} value={newDarsQoldirish} className="px-2 py-3 cursor-pointer">
+                            <option>Bu yerdan tanlang</option>
 
-                    {soat.map((watch) => (
-                        <option key={watch}>{watch}-soat</option>
-                    ))}
+                            {soat.map((watch) => (
+                                <option key={watch}>{watch}-soat</option>
+                            ))}
 
-                    <option>Kun bo`yicha</option>
-                    {kun.map((day) => (
-                        <option key={day}>{day}-kun</option>
-                    ))}
-                </select>
-                <label className="text-[18px] poppins font-bold" htmlFor="">
-                    Telefon raqami
-                </label>
-                <input
-                    className="w-full py-3 px-2 border outline-none"
-                    onChange={(e) => setTelephoneRaqami(e.target.value)}
-                    value={telephoneRaqami}
-                    type="text"
-                    placeholder="Telefon raqami"
-                />
+                            <option>Kun bo`yicha</option>
+                            {kun.map((day) => (
+                                <option key={day}>{day}-kun</option>
+                            ))}
+                        </select>
+                        <label className="text-[18px] poppins font-bold" htmlFor="">
+                            Telefon raqami
+                        </label>
+                        <input
+                            className="w-full py-3 px-2 border outline-none"
+                            onChange={(e) => setTelephoneRaqami(e.target.value)}
+                            value={telephoneRaqami}
+                            type="text"
+                            placeholder="Telefon raqami"
+                        />
+
+                        <div className="flex justify-end">
+                            <button
+                                type="submit"
+                                className="green cursor-pointer rounded-md font-bold text-white py-3 px-6 w-fit"
+                            >
+                                Qo`shish
+                            </button>
+                        </div>
+
+                    </>
+                )}
+
+                {school !== "3" && (
+                    <>
+                        <label className="text-[18px] font-bold poppins" htmlFor="">
+                            Sinfni tanlang
+                        </label>
+                        <select className="px-2 py-3 cursor-pointer" name="" id="">
+                            <option>Bu yerdan tanlang</option>
+                            {sinflar.map((sinf, index) => (
+                                <option value={sinf}>{sinf}-sinf</option>
+                            ))}
+                        </select>
+
+                        <label className="text-[18px] font-bold poppins" htmlFor="">
+                            Familiya, Ismi hamda Otasining ismi
+                        </label>
+
+                        <select className="px-2 py-3 cursor-no-drop" name="" id="">
+                            <option value="">Ma'lumot yo`q</option>
+                        </select>
+                        <label className="text-[18px] font-bold poppins" htmlFor="">
+                            Qoldirilgan dars vaqti
+                        </label>
+                        <select onChange={(e) => setNewDarsQoldirish(e.target.value)} value={newDarsQoldirish} className="px-2 py-3 cursor-no-drop">
+                            <option>Ma'lumot yo`q</option>
+
+                            {/* {soat.map((watch) => (
+                                <option key={watch}>{watch}-soat</option>
+                            ))} */}
+
+                            {/* <option>Kun bo`yicha</option>
+                            {kun.map((day) => (
+                                <option key={day}>{day}-kun</option>
+                            ))} */}
+                        </select>
+                        <label className="text-[18px] poppins font-bold" htmlFor="">
+                            Telefon raqami
+                        </label>
+                        {/* <input
+                            className="w-full py-3 px-2 border outline-none"
+                            onChange={(e) => setTelephoneRaqami(e.target.value)}
+                            value={telephoneRaqami}
+                            type="text"
+                            placeholder="Telefon raqami"
+                        /> */}
+                        <input placeholder="Ma'lumot yo`q " className="w-full px-2 py-3 bg-white cursor-no-drop" type="text" />
+                        <div className="flex justify-end">
+                            <button
+                                type="submit"
+                                disabled={school !== "3"} // Disable button when school is not equal to "3"
+                                className="bg-white border-2 cursor-no-drop rounded-md font-bold text-gray-200 py-3 px-6 w-fit"
+                            >
+                                Qo`shish
+                            </button>
+                        </div>
+                    </>
+                )}
 
 
 
 
 
-                <div className="flex justify-end">
-                    <button
-                        type="submit"
-                        className="green rounded-md font-bold text-white py-3 px-6 w-fit"
-                    >
-                        Qo`shish
-                    </button>
-                </div>
             </form>
         </>
     );

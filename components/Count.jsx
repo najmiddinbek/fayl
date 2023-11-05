@@ -1,10 +1,11 @@
 'use client'
 
-
 import React, { useEffect, useState } from 'react';
 
 const getTopics = async () => {
-    const filterDate = new Date("2023-11-05T7:00:00").getTime();
+    const today = new Date();
+    const filterDate = new Date(today.getTime() - 140 * 60000).getTime();
+
     try {
         const res = await fetch(`/api/topics`, {
             cache: 'no-store',
@@ -27,18 +28,26 @@ const getTopics = async () => {
 };
 
 export default function Count() {
-    const [topicCount, setTopicCount] = useState();
+    const [topicCount, setTopicCount] = useState(() => {
+        const storedTopicCount = localStorage.getItem('topicCount');
+        return storedTopicCount ? parseInt(storedTopicCount) : 0;
+    });
+
     const [latestTopicId, setLatestTopicId] = useState('');
-    const [filteredTopics, setFilteredTopics] = useState([]);
+    const [clickedTopicIds, setClickedTopicIds] = useState(() => {
+        const storedClickedTopicIds = localStorage.getItem('clickedTopicIds');
+        return storedClickedTopicIds ? JSON.parse(storedClickedTopicIds) : [];
+    });
+
     useEffect(() => {
         const fetchTopics = async () => {
             try {
-                const topics = await getTopics();
-                setFilteredTopics(topics);
-                setTopicCount(topics.length);
+                const filteredTopics = await getTopics();
+                const newFilteredTopics = filteredTopics.filter(topic => !clickedTopicIds.includes(topic._id));
+                setTopicCount(newFilteredTopics.length);
 
-                if (topics.length > 0) {
-                    const latestTopicId = topics[topics.length - 1]._id;
+                if (newFilteredTopics.length > 0) {
+                    const latestTopicId = newFilteredTopics[newFilteredTopics.length]._id;
                     setLatestTopicId(latestTopicId);
                 }
             } catch (error) {
@@ -47,17 +56,27 @@ export default function Count() {
         };
 
         fetchTopics();
-    }, []);
+    }, [clickedTopicIds]);
+
+    const handleTopicClick = (topicId) => {
+        setClickedTopicIds(prevClickedTopicIds => {
+            const updatedClickedTopicIds = [...prevClickedTopicIds, topicId];
+            localStorage.setItem('clickedTopicIds', JSON.stringify(updatedClickedTopicIds));
+            return updatedClickedTopicIds;
+        });
+    };
+
+    useEffect(() => {
+        localStorage.setItem('topicCount', topicCount.toString());
+    }, [topicCount]);
+
+
 
     return (
         <>
-            {filteredTopics.length > 0 && (
-                <>
-                    <div className="absolute top-1 right-1 bg-red-600 text-[12px] text-white rounded-full px-1.5">
-                        {topicCount}
-                    </div>
-                </>
-            )}
+            <div className="absolute top-1 right-1 bg-red-600 text-[12px] text-white rounded-full px-1.5">
+                {topicCount}
+            </div>
         </>
     );
 }

@@ -51,11 +51,11 @@ export default function FilterOption({ shaxsiy, setShaxsiy, setSetShaxs, setSetI
 
     return (
         <div>
-            <select className="px-2 py-3 cursor-pointer w-full" value={selectedOption} onChange={handleOptionChange}>
+            <select className="px-2 py-3 mb-3 cursor-pointer w-full" value={selectedOption} onChange={handleOptionChange}>
                 <option>Bu yerdan tanlang</option>
                 {sinflar.map((sinf) => (
                     <option key={sinf} value={sinf}>
-                        {sinf}
+                        {sinf}-sinf
                     </option>
                 ))}
             </select>
@@ -63,7 +63,7 @@ export default function FilterOption({ shaxsiy, setShaxsiy, setSetShaxs, setSetI
                 <label className="text-[18px] poppins font-bold" htmlFor="">
                     Familiya, Ismi hamda Otasining ismi
                 </label>
-                <select className="w-full p-3" value={selectedName} onChange={yangiIsm}>
+                <select className="w-full p-3 mt-3" value={selectedName} onChange={yangiIsm}>
                     <option>Tanlang</option>
                     {mavzula
                         .filter((mavzu) => mavzu.sinf === parseInt(selectedOption))
